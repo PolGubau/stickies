@@ -28,8 +28,6 @@ const Form = () => {
     titleRef.current!.value = "";
     descriptionRef.current!.value = "";
     categoryRef.current!.value = "";
-    
-    
   };
   const handleMinimize = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

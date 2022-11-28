@@ -11,9 +11,16 @@ import {
 
 const StickiesList = () => {
   const dispatch = useAppDispatch();
+  // if you have selected a category, then you will see only the stickies of that category
+  // if you have not selected a category, then you will see all the stickies
+  const selectedCategories = useAppSelector(actualSelectedCategories);
   const { stickies } = useAppSelector(actualStickies);
-  const { selectedCategories } = useAppSelector(actualSelectedCategories);
-
+  const stickiesToShow = selectedCategories.length
+    ? stickies.filter((sticky: any) =>
+        selectedCategories.includes(sticky.category)
+      )
+    : stickies;
+  console.log(stickiesToShow);
   const removeThisCategory = (id: string) => {
     dispatch(removeSelectedCategoryActionCreator(id));
   };

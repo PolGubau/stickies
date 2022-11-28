@@ -6,18 +6,9 @@ import {
   addCategoryActionCreator,
 } from "src/redux/features/categoriesSlice";
 import { addSelectedCategoryActionCreator } from "src/redux/features/selectedCategoriesSlice";
-import styled from "styled-components";
+import { CategoryName, NewCategoryForm } from "./CategoriesStyled";
 import "./CategoriesStyles.css";
 //
-interface ICategoryName {
-  color: string;
-}
-const CategoryName = styled.p<ICategoryName>`
-  background-color: ${(props) => props.color};
-  margin: 0;
-  padding: 5px;
-  border-radius: 15px;
-`;
 
 //
 const Categories = () => {
@@ -44,14 +35,8 @@ const Categories = () => {
     dispatch(addSelectedCategoryActionCreator(category));
   };
 
-  const NewCategoryForm = styled.form`
-    display: flex;
-    flex-direction: row;
-    gap: 0px;
-    align-items: stretch;
-    justify-content: flex-start;
-    align-content: center;
-  `;
+  //
+
   return (
     <section className="categoriesContainer">
       <NewCategoryForm onSubmit={(e) => handleNewCategory(e)}>

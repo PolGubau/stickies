@@ -6,6 +6,12 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+
+
+
+  background: var(--yellowLight);
+  background-image: radial-gradient(var(--yellowDark) 1px, transparent 0);
+  background-size: 50px 50px;
 }
 
 .title {

@@ -50,6 +50,8 @@ export const stickiesSlice = createSlice({
   },
 });
 export const actualStickies = (state: any) => state.stickies;
+export const stickiesWithThisCategory = (state: any, category: string) =>
+  state.stickies.filter((sticky: any) => sticky.category === category);
 export const {
   addSticky: addStickysActioncreator,
   loadStickies: loadStickysActioncreator,
