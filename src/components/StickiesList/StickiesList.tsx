@@ -8,8 +8,11 @@ import {
   actualSelectedCategories,
   removeSelectedCategoryActionCreator,
 } from "src/redux/features/selectedCategoriesSlice";
+import { useParams } from "react-router-dom";
 
 const StickiesList = () => {
+  const { stickyId } = useParams();
+
   const dispatch = useAppDispatch();
   // if you have selected a category, then you will see only the stickies of that category
   // if you have not selected a category, then you will see all the stickies
@@ -53,7 +56,11 @@ const StickiesList = () => {
       <section className="stikyList">
         {stickiesToShow &&
           stickiesToShow.map((sticky: ISticky) => (
-            <Sticky key={sticky.id} sticky={sticky} />
+            <Sticky
+              key={sticky.id}
+              sticky={sticky}
+              opened={stickyId === sticky.id}
+            />
           ))}
       </section>
     </>

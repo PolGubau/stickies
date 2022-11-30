@@ -4,20 +4,11 @@ import { actualCategories } from "src/redux/features/categoriesSlice";
 
 import { removeStickysActioncreator } from "src/redux/features/stickiesSlice";
 import { colors } from "src/styles/theme";
-import styled from "styled-components";
-
-interface StickyStyledProps {
-  bgColor: string;
-}
-const StickyStyled = styled.div<StickyStyledProps>`
-  position: relative;
-  overflow: hidden;
-  padding: 10px;
-  background-color: ${(props) => props.bgColor};
-  border-radius: 10px;
-`;
-const Sticky = ({ sticky }: { sticky: ISticky }) => {
+import { StickyStyled } from "./StickyStyled";
+import useStickyFunctions from "./utils/useStickyFunctions";
+const Sticky = ({ sticky, opened }: { sticky: ISticky; opened: boolean }) => {
   const dispatch = useAppDispatch();
+  const f = useStickyFunctions();
   const handleDelete = () => {
     console.log("delete sticky");
     dispatch(removeStickysActioncreator(sticky.id));
@@ -30,8 +21,15 @@ const Sticky = ({ sticky }: { sticky: ISticky }) => {
   const bgColor = categoryOfThisSticky?.color ?? colors.yellow;
 
   return (
-    <StickyStyled bgColor={bgColor}>
-      <h2 className="sticky">{sticky.title}</h2>
+    <StickyStyled
+      bgColor={bgColor}
+      onClick={() => f.openSticky(sticky.id, opened)}
+      opened={opened}
+    >
+      <div className="stickyHeader">
+        <h2 className="sticky">{sticky.title}</h2>
+        {opened && <button onClick={f.closeSticky}>X</button>}
+      </div>
       <p>{sticky.description}</p>
       {sticky.category && <p>{sticky.category}</p>}
       <button onClick={handleDelete}>Delete</button>

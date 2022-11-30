@@ -1,20 +1,22 @@
-import Form from "src/components/form/Form";
-import StickiesList from "src/components/StickiesList/StickiesList";
 import "src/App.css";
-import Header from "./components/Header/Header";
+import Form from "./components/form/Form";
+import Header from "src/components/Header/Header";
+import StickiesList from "src/components/StickiesList/StickiesList";
 
-const App = () => (
-  <>
-    <main className="main">
-      <Header />
-      <section className="stickiesList">
-        <StickiesList />
-      </section>
-      <section className="formSection">
-        <Form />
-      </section>
-    </main>
-  </>
-);
+const Hero = () => {
+  return (
+    <>
+      <main className="main">
+        <Header />
+        <section className="stickiesList">
+          <StickiesList />
+        </section>
+        <section className="formSection">
+          <Form />
+        </section>
+      </main>
+    </>
+  );
+};
 
-export default App;
+export default Hero;

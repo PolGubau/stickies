@@ -2,7 +2,18 @@ import styled from "styled-components";
 export interface ICategoryName {
   color: string;
 }
-
+export const CategoriesContainerStyled = styled.section`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  align-items: center;
+`;
 export const NewCategoryForm = styled.form`
   display: flex;
   flex-direction: row;
@@ -43,6 +54,9 @@ export const NewCategoryForm = styled.form`
   }
 `;
 
+export const OptionColor = styled.option<ICategoryName>`
+  background-color: ${(props) => props.color};
+`;
 export const CategoryName = styled.button<ICategoryName>`
   background-color: ${(props) => props.color};
   margin: 0;

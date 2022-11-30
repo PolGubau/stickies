@@ -17,8 +17,9 @@ const Form = () => {
   //
   const addNewSticky = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const newId = Math.floor(Math.random() * 1000000).toString(36);
     const newSticky = {
-      id: Math.random(),
+      id: newId,
       title: titleRef.current?.value,
       description: descriptionRef.current?.value,
       category: categoryRef.current?.value,

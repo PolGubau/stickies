@@ -6,17 +6,21 @@ import {
   addCategoryActionCreator,
 } from "src/redux/features/categoriesSlice";
 import { addSelectedCategoryActionCreator } from "src/redux/features/selectedCategoriesSlice";
-import { CategoryName, NewCategoryForm } from "./CategoriesStyled";
-import "./CategoriesStyles.css";
+import {
+  CategoriesContainerStyled,
+  CategoryName,
+  NewCategoryForm,
+  OptionColor,
+} from "./CategoriesStyled";
 import { MdOutlineCreateNewFolder } from "react-icons/md";
+import { availableColors } from "src/styles/theme";
 //
 
-//
 const Categories = () => {
   const dispatch = useAppDispatch();
   const { categories } = useAppSelector(actualCategories) || [];
   const categoryRef = useRef<HTMLInputElement>(null);
-  const colorRef = useRef<HTMLInputElement>(null);
+  const colorRef = useRef<HTMLSelectElement>(null);
   const maxCategories = 10;
 
   const handleNewCategory = (e: FormEvent<HTMLFormElement>) => {
@@ -27,7 +31,7 @@ const Categories = () => {
         name: categoryRef.current?.value,
         color: colorRef.current?.value,
       };
-      dispatch(addCategoryActionCreator(newCategory));
+      newCategory.name && dispatch(addCategoryActionCreator(newCategory));
     }
   };
 
@@ -35,13 +39,30 @@ const Categories = () => {
     dispatch(addSelectedCategoryActionCreator(category));
   };
 
-  //
-
   return (
-    <section className="categoriesContainer">
+    <CategoriesContainerStyled>
       <NewCategoryForm onSubmit={(e) => handleNewCategory(e)}>
-        <input className="nomCategoria" type="text" placeholder="Crea una categoría" ref={categoryRef} />
-        <input type="color" name="color" id="color" className="chooseColor" ref={colorRef} />
+        <input
+          className="nomCategoria"
+          type="text"
+          placeholder="Crea una categoría"
+          ref={categoryRef}
+        />
+
+        <select className="chooseColor" ref={colorRef}>
+          {availableColors.map((color) => {
+            return (
+              <OptionColor
+                color={color[1].normal}
+                value={color[1].normal}
+                key={color[0]}
+              >
+                {color[0]}
+              </OptionColor>
+            );
+          })}
+        </select>
+
         <button type="submit" className="submit">
           <MdOutlineCreateNewFolder size={30} />
         </button>
@@ -55,7 +76,7 @@ const Categories = () => {
           {category.name}
         </CategoryName>
       ))}
-    </section>
+    </CategoriesContainerStyled>
   );
 };
 
