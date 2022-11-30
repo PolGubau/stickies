@@ -1,25 +1,26 @@
 import { ICategory, ISticky } from "src/Interfaces";
-import { useAppDispatch, useAppSelector } from "src/redux/app/hooks";
+import { useAppSelector } from "src/redux/app/hooks";
 import { actualCategories } from "src/redux/features/categoriesSlice";
 
-import { removeStickysActioncreator } from "src/redux/features/stickiesSlice";
-import { colors } from "src/styles/theme";
+import { colors, defaultStickyColor } from "src/styles/theme";
 import { StickyStyled } from "./StickyStyled";
 import useStickyFunctions from "./utils/useStickyFunctions";
+
+//
 const Sticky = ({ sticky, opened }: { sticky: ISticky; opened: boolean }) => {
-  const dispatch = useAppDispatch();
   const f = useStickyFunctions();
-  const handleDelete = () => {
-    console.log("delete sticky");
-    dispatch(removeStickysActioncreator(sticky.id));
-  };
 
   const allCategories = useAppSelector(actualCategories);
   const categoryOfThisSticky = allCategories.categories.find(
     (category: ICategory) => category.name === sticky.category
   );
-  const bgColor = categoryOfThisSticky?.color ?? colors.yellow;
 
+  const bgColor = categoryOfThisSticky?.color || defaultStickyColor;
+
+  const description =
+    sticky.description && !opened && sticky.description.length > 50
+      ? sticky.description.slice(0, 40) + "..."
+      : sticky.description;
   return (
     <StickyStyled
       bgColor={bgColor}
@@ -30,9 +31,9 @@ const Sticky = ({ sticky, opened }: { sticky: ISticky; opened: boolean }) => {
         <h2 className="sticky">{sticky.title}</h2>
         {opened && <button onClick={f.closeSticky}>X</button>}
       </div>
-      <p>{sticky.description}</p>
+      <p>{description}</p>
       {sticky.category && <p>{sticky.category}</p>}
-      <button onClick={handleDelete}>Delete</button>
+      <button onClick={() => f.deleteSticky(sticky.id)}>Delete</button>
     </StickyStyled>
   );
 };

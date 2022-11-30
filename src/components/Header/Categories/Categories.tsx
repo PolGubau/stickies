@@ -1,47 +1,34 @@
 import { FormEvent, useRef } from "react";
-import { ICategory } from "src/Interfaces";
-import { useAppSelector, useAppDispatch } from "src/redux/app/hooks";
-import {
-  actualCategories,
-  addCategoryActionCreator,
-} from "src/redux/features/categoriesSlice";
-import { addSelectedCategoryActionCreator } from "src/redux/features/selectedCategoriesSlice";
+import { useAppSelector } from "src/redux/app/hooks";
+import { actualCategories } from "src/redux/features/categoriesSlice";
 import {
   CategoriesContainerStyled,
   CategoryName,
-  NewCategoryForm,
   OptionColor,
 } from "./CategoriesStyled";
+import useCategoriesFunctions from "./utils/useCategoriesFunctions";
 import { MdOutlineCreateNewFolder } from "react-icons/md";
 import { availableColors } from "src/styles/theme";
 //
 
 const Categories = () => {
-  const dispatch = useAppDispatch();
+  const f = useCategoriesFunctions();
   const { categories } = useAppSelector(actualCategories) || [];
   const categoryRef = useRef<HTMLInputElement>(null);
   const colorRef = useRef<HTMLSelectElement>(null);
-  const maxCategories = 10;
 
   const handleNewCategory = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (categories.length < maxCategories) {
-      const newCategory = {
-        name: categoryRef.current?.value,
-        color: colorRef.current?.value,
-      };
-      newCategory.name && dispatch(addCategoryActionCreator(newCategory));
-    }
-  };
-
-  const selectThisCategory = (category: ICategory) => {
-    dispatch(addSelectedCategoryActionCreator(category));
+    const newCategory = {
+      name: categoryRef.current?.value,
+      color: colorRef.current?.value,
+    };
+    f.createCategory(newCategory);
   };
 
   return (
     <CategoriesContainerStyled>
-      <NewCategoryForm onSubmit={(e) => handleNewCategory(e)}>
+      <form className="formCategories" onSubmit={(e) => handleNewCategory(e)}>
         <input
           className="nomCategoria"
           type="text"
@@ -66,10 +53,10 @@ const Categories = () => {
         <button type="submit" className="submit">
           <MdOutlineCreateNewFolder size={30} />
         </button>
-      </NewCategoryForm>
+      </form>
       {categories.map((category: any) => (
         <CategoryName
-          onClick={() => selectThisCategory(category)}
+          onClick={() => f.selectThisCategory(category)}
           color={category.color}
           key={category.id}
         >

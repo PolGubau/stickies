@@ -36,6 +36,10 @@ export const categoriesSlice = createSlice({
       state.selectedCategories = state.selectedCategories.filter(
         (selectedCategory: ICategory) => selectedCategory.id !== action.payload
       );
+      localStorage.setItem(
+        LOCAL_STORAGE_KEY.selectedCategories,
+        JSON.stringify(state.selectedCategories)
+      );
     },
   },
 });

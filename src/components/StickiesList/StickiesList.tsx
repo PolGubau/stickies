@@ -53,7 +53,7 @@ const StickiesList = () => {
           ))}
         </h3>
       )}
-      <section className="stikyList">
+      <section className="stickyList">
         {stickiesToShow &&
           stickiesToShow.map((sticky: ISticky) => (
             <Sticky

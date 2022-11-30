@@ -44,6 +44,11 @@ export const colors = {
     normal: "#ccc",
     dark: "#333",
   },
+  white: {
+    light: "#fff",
+    normal: "#ddd",
+    dark: "#ccc",
+  },
 };
-
+export const defaultStickyColor = colors.white.normal;
 export const availableColors = Object.entries(colors);
