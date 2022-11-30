@@ -42,21 +42,34 @@ export const stickiesSlice = createSlice({
         JSON.stringify(state.stickies)
       );
     },
-    getStickiesByCategory: (state, action) => {
-      state.stickies = state.stickies.filter(
-        (sticky) => sticky.category === action.payload
+    updateSticky: (state, action) => {
+      const updatedSticky = action.payload;
+      if (updatedSticky.category.length === 0) {
+        delete updatedSticky.category;
+      }
+      if (updatedSticky.description.length === 0) {
+        delete updatedSticky.description;
+      }
+      state.stickies = state.stickies.map((sticky) => {
+        if (sticky.id === updatedSticky.id) {
+          return updatedSticky;
+        }
+        return sticky;
+      });
+      localStorage.setItem(
+        LOCAL_STORAGE_KEY.stickies,
+        JSON.stringify(state.stickies)
       );
     },
   },
 });
 export const actualStickies = (state: any) => state.stickies;
-export const stickiesWithThisCategory = (state: any, category: string) =>
-  state.stickies.filter((sticky: any) => sticky.category === category);
+
 export const {
   addSticky: addStickysActioncreator,
   loadStickies: loadStickysActioncreator,
   removeSticky: removeStickysActioncreator,
-  getStickiesByCategory: getStickiesByCategorysActioncreator,
+  updateSticky: updateStickiesActioncreator,
 } = stickiesSlice.actions;
 
 export default stickiesSlice.reducer;

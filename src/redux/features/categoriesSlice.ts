@@ -37,6 +37,9 @@ export const categoriesSlice = createSlice({
   },
 });
 export const actualCategories = (state: any) => state.categories;
+export const conreteCategory = (state: any, name: string) => {
+  return state.categories.find((category: any) => category.name === name);
+};
 export const {
   addCategory: addCategoryActionCreator,
   removeCategory: removeCategoryActionCreator,

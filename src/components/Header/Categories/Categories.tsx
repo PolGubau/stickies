@@ -8,6 +8,7 @@ import {
 import { addSelectedCategoryActionCreator } from "src/redux/features/selectedCategoriesSlice";
 import { CategoryName, NewCategoryForm } from "./CategoriesStyled";
 import "./CategoriesStyles.css";
+import { MdOutlineCreateNewFolder } from "react-icons/md";
 //
 
 //
@@ -16,7 +17,6 @@ const Categories = () => {
   const { categories } = useAppSelector(actualCategories) || [];
   const categoryRef = useRef<HTMLInputElement>(null);
   const colorRef = useRef<HTMLInputElement>(null);
-  //max categories = 10
   const maxCategories = 10;
 
   const handleNewCategory = (e: FormEvent<HTMLFormElement>) => {
@@ -40,9 +40,11 @@ const Categories = () => {
   return (
     <section className="categoriesContainer">
       <NewCategoryForm onSubmit={(e) => handleNewCategory(e)}>
-        <input type="text" placeholder="Crea una categoría" ref={categoryRef} />
-        <input type="color" name="color" id="color" ref={colorRef} />
-        <button type="submit">Crear categoría</button>
+        <input className="nomCategoria" type="text" placeholder="Crea una categoría" ref={categoryRef} />
+        <input type="color" name="color" id="color" className="chooseColor" ref={colorRef} />
+        <button type="submit" className="submit">
+          <MdOutlineCreateNewFolder size={30} />
+        </button>
       </NewCategoryForm>
       {categories.map((category: any) => (
         <CategoryName

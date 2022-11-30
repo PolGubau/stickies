@@ -10,8 +10,8 @@
     gap: 10px;
     padding: 10px;
     border: 1px solid var(--grey);
-    border-radius: 5px;
-    background: var(--orange);
+    border-radius: 30px;
+    background: var(--grey);
 }
 
 .form input,
@@ -28,12 +28,19 @@
     resize: vertical;
 }
 
+.formTitle {
+    margin: 7px 3px;
+    padding: 0;
+    color: var(--dark-grey);
+}
+
 .submitButton {
-    width: 100%;
     padding: 10px;
     border: 1px solid var(--grey);
     border-radius: 5px;
-    background-color: var(--grey);
+    background-color: var(--orange);
+    flex-grow: 1;
+    border-radius: 20px;
     cursor: pointer;
 }
 
@@ -42,14 +49,43 @@
     width: 100%;
 }
 
-.expandButton {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: var(--orange);
-    border: 1px solid black;
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 5px;
+
+}
+
+.minimizeButton {
+    background-color: var(--dark-grey);
+    color: var(--light-grey);
+    border: 1px solid var(--orange-dark);
     border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 50px;
     height: 50px;
-    font-size: 30px;
+    font-size: 20px;
+}
+
+.downFixed {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+}
+
+.expandButton {
+    background-color: var(--dark-grey);
+    color: var(--light-grey);
+    border: 1px solid var(--orange-dark);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
 }

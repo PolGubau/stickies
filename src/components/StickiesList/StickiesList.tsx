@@ -1,4 +1,4 @@
-import { ISticky } from "src/Interfaces";
+import { ICategory, ISticky } from "src/Interfaces";
 import { useAppSelector, useAppDispatch } from "src/redux/app/hooks";
 import { actualStickies } from "src/redux/features/stickiesSlice";
 import "./StickiesListStyles.css";
@@ -13,14 +13,25 @@ const StickiesList = () => {
   const dispatch = useAppDispatch();
   // if you have selected a category, then you will see only the stickies of that category
   // if you have not selected a category, then you will see all the stickies
-  const selectedCategories = useAppSelector(actualSelectedCategories);
-  const { stickies } = useAppSelector(actualStickies);
-  const stickiesToShow = selectedCategories.length
-    ? stickies.filter((sticky: any) =>
-        selectedCategories.includes(sticky.category)
-      )
-    : stickies;
-  console.log(stickiesToShow);
+  const { selectedCategories } = useAppSelector(actualSelectedCategories);
+
+  const { stickies: allStickies } = useAppSelector(actualStickies);
+
+  let stickiesToShow = allStickies;
+
+  //
+  if (selectedCategories.length > 0) {
+    const stickiesWithCategory = allStickies.filter((sticky: ISticky) => {
+      return sticky.category !== undefined;
+    });
+
+    stickiesToShow = stickiesWithCategory.filter((sticky: ISticky) =>
+      selectedCategories.map((categorySel: ICategory) => {
+        return categorySel.name === sticky.category;
+      })
+    );
+  }
+
   const removeThisCategory = (id: string) => {
     dispatch(removeSelectedCategoryActionCreator(id));
   };
@@ -40,8 +51,8 @@ const StickiesList = () => {
         </h3>
       )}
       <section className="stikyList">
-        {stickies &&
-          stickies.map((sticky: ISticky) => (
+        {stickiesToShow &&
+          stickiesToShow.map((sticky: ISticky) => (
             <Sticky key={sticky.id} sticky={sticky} />
           ))}
       </section>

@@ -28,8 +28,12 @@ a {
 
 :root {
   --grey: #ccc;
+  --light-grey: #eee;
+  --dark-grey: #333;
   --yellow: #fffcb1;
   --yellowLight: #fffdd0;
   --yellowDark: #b0b03d;
   --orange: #ffd79f;
+  --orangeLight: #ffe6c2;
+  --orangeDark: #ffbf66;
 }

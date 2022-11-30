@@ -1,11 +1,11 @@
 import Categories from "./Categories/Categories";
-import "./HeaderStyled.css";
+import { HeaderStyled } from "./HeaderStyled";
 const Header = () => {
   return (
-    <section className="containerHeader">
+    <HeaderStyled>
       <h1 className="title">Stickies</h1>
       <Categories />
-    </section>
+    </HeaderStyled>
   );
 };
 
