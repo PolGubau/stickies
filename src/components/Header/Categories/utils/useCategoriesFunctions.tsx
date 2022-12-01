@@ -27,6 +27,11 @@ const useCategoriesFunctions = () => {
         newCategory.name && dispatch(addCategoryActionCreator(newCategory));
       }
     },
+    categoryOfThisSticky: (stickyCategory: string) => {
+      return categories.find(
+        (category: ICategory) => category.name === stickyCategory
+      );
+    },
   };
 };
 

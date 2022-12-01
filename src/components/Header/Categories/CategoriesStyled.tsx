@@ -62,6 +62,8 @@ export const CategoryName = styled.button<ICategoryName>`
   background-color: ${(props) => props.color};
   margin: 0;
   padding: 0px 15px;
+  height: 40px;
+
   border-radius: 20px;
   cursor: pointer;
   border: 1px solid black;

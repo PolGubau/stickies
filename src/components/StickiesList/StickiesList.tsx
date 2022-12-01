@@ -1,4 +1,4 @@
-import { ICategory, ISticky } from "src/Interfaces";
+import { ISticky } from "src/Interfaces";
 import { useAppSelector, useAppDispatch } from "src/redux/app/hooks";
 import { actualStickies } from "src/redux/features/stickiesSlice";
 import "./StickiesListStyles.css";
@@ -20,20 +20,13 @@ const StickiesList = () => {
 
   const { stickies: allStickies } = useAppSelector(actualStickies);
 
-  let stickiesToShow = allStickies;
-
   //
-  if (selectedCategories.length > 0) {
-    const stickiesWithCategory = allStickies.filter((sticky: ISticky) => {
-      return sticky.category !== undefined;
-    });
-
-    stickiesToShow = stickiesWithCategory.filter((sticky: ISticky) =>
-      selectedCategories.map((categorySel: ICategory) => {
-        return categorySel.name === sticky.category;
-      })
-    );
-  }
+  const stickiesToShow =
+    selectedCategories.length > 0
+      ? allStickies.filter((sticky: ISticky) => {
+          return sticky.category !== undefined;
+        })
+      : allStickies;
 
   const removeThisCategory = (id: string) => {
     dispatch(removeSelectedCategoryActionCreator(id));
@@ -56,11 +49,13 @@ const StickiesList = () => {
       <section className="stickyList">
         {stickiesToShow &&
           stickiesToShow.map((sticky: ISticky) => (
-            <Sticky
-              key={sticky.id}
-              sticky={sticky}
-              opened={stickyId === sticky.id}
-            />
+            <>
+              <Sticky
+                key={sticky.id}
+                sticky={sticky}
+                opened={stickyId === sticky.id}
+              />
+            </>
           ))}
       </section>
     </>

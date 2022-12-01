@@ -4,17 +4,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    align-items: flex-start;
     flex-grow: 1;
     margin: 0;
     gap: 10px;
     padding: 0;
     list-style: none;
-    align-items: stretch
+    align-items: stretch;
+    align-content: flex-start;
 }
-
-
-
 
 .listTitle {
     display: flex;

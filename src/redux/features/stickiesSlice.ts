@@ -20,13 +20,18 @@ export const stickiesSlice = createSlice({
     },
 
     addSticky: (state, action) => {
-      const newSticky = action.payload;
+      const newSticky = {
+        id: Math.floor(Math.random() * 1000000).toString(36),
+        createdAt: new Date().toISOString(),
+        ...action.payload,
+      };
       if (newSticky.category.length === 0) {
         delete newSticky.category;
       }
       if (newSticky.description.length === 0) {
         delete newSticky.description;
       }
+
       state.stickies.push(newSticky);
       localStorage.setItem(
         LOCAL_STORAGE_KEY.stickies,

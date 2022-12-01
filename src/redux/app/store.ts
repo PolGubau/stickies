@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import stickiesReducer from "../features/stickiesSlice";
 import categoryReducer from "../features/categoriesSlice";
 import selectedCategoriesReducer from "../features/selectedCategoriesSlice";
+import formReducer from "../features/formSlice";
 
 export const store = configureStore({
   reducer: {
     stickies: stickiesReducer,
     categories: categoryReducer,
     selectedCategories: selectedCategoriesReducer,
+    form: formReducer,
   },
 });
 

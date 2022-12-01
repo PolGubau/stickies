@@ -17,6 +17,11 @@ const useStickyFunctions = () => {
       console.log("delete sticky");
       dispatch(removeStickysActioncreator(id));
     },
+    shortDescription: (description: string | undefined) => {
+      return description && description.length > 37
+        ? description.slice(0, 37) + "..."
+        : description;
+    },
   };
 };
 
