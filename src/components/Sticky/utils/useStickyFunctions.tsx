@@ -1,10 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "src/redux/app/hooks";
-import { removeStickysActioncreator } from "src/redux/features/stickiesSlice";
+import { ICategories, ICategory, ISticky } from "src/Interfaces";
+import { useAppDispatch, useAppSelector } from "src/redux/app/hooks";
+import {
+  actualStickies,
+  removeStickysActioncreator,
+} from "src/redux/features/stickiesSlice";
 
 const useStickyFunctions = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { stickies } = useAppSelector(actualStickies);
 
   return {
     closeSticky: () => {
@@ -21,6 +26,13 @@ const useStickyFunctions = () => {
       return description && description.length > 37
         ? description.slice(0, 37) + "..."
         : description;
+    },
+    getAllStickiesWithCategory: () => {
+      const stickiesWithCategory = stickies.map((sticky: ISticky) => {
+        const category = sticky.category;
+        return { ...sticky, category };
+      });
+      return stickiesWithCategory;
     },
   };
 };

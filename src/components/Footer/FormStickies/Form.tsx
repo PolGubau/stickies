@@ -2,10 +2,11 @@ import React, { useRef } from "react";
 import { useAppDispatch, useAppSelector } from "src/redux/app/hooks";
 import { actualCategories } from "src/redux/features/categoriesSlice";
 import { addStickysActioncreator } from "src/redux/features/stickiesSlice";
-import "./FormStyles.css";
-import { FiMaximize2, FiMinimize2 } from "react-icons/fi";
+import { FiMinimize2 } from "react-icons/fi";
 import { formOptions } from "src/redux/features/formSlice";
 import useFormFunctions from "./utils/useFormFunctions";
+import { FormStyled } from "./FormStyled";
+import ActionButton from "src/components/Buttons/ActionButton/ActionButton";
 
 const Form = () => {
   const f = useFormFunctions();
@@ -33,15 +34,12 @@ const Form = () => {
   };
 
   return !opened ? (
-    <button
-      className="expandButton formShape downFixed"
-      onClick={f.handleMinimize}
-    >
-      <FiMaximize2 />
-    </button>
+    <div className="downFixed" onClick={f.handleMinimize}>
+      <ActionButton iconName="expand" />
+    </div>
   ) : (
     <>
-      <form onSubmit={(e) => addNewSticky(e)} className="form">
+      <FormStyled onSubmit={(e) => addNewSticky(e)}>
         <h2 className="formTitle">Crea un Sticky</h2>
         <input
           ref={titleRef}
@@ -68,17 +66,15 @@ const Form = () => {
           ))}
         </select>
         <div className="buttonsContainer">
-          <button
-            className="minimizeButton formShape"
-            onClick={f.handleMinimize}
-          >
-            <FiMinimize2 />
-          </button>
+          <div className="minimizeButton formShape" onClick={f.handleMinimize}>
+            <ActionButton iconName="minimize" />
+          </div>
+
           <button type="submit" className="submitButton">
             Crear sticky
           </button>
         </div>
-      </form>
+      </FormStyled>
     </>
   );
 };

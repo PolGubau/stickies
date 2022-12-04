@@ -13,7 +13,7 @@ const useFormFunctions = () => {
     createSticky: (id: string, opened: boolean) => {
       !opened && navigate(`/sticky/${id}`);
     },
-    handleMinimize: (e: React.MouseEvent<HTMLButtonElement>) => {
+    handleMinimize: (e: any) => {
       e.preventDefault();
       dispatch(toggleFormActionCreator());
     },
