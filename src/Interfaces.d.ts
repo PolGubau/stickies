@@ -11,10 +11,14 @@ export interface IStickies {
 }
 
 export interface ICategory {
-  id: number;
+  id: string;
   name: string;
+  color: string;
   createdAt: string;
+  updatedAt?: string;
 }
 export interface ICategories {
   categories: ICategory[];
 }
+
+export type ListOfPopups = "settings" | "newCategory" | "newSticky";

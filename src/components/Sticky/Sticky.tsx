@@ -11,7 +11,7 @@ const Sticky = ({ sticky, opened }: { sticky: ISticky; opened: boolean }) => {
   const fs = useStickyFunctions();
   const fc = useCategoriesFunctions();
   const stickyColor = sticky.category
-    ? fc.categoryOfThisSticky(sticky.category).color
+    ? fc.categoryOfThisSticky(sticky.category).color ?? defaultStickyColor
     : defaultStickyColor;
 
   return (

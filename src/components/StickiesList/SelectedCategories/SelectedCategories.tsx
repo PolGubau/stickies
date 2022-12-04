@@ -28,7 +28,6 @@ const SelectedCategories = () => {
           ))}
         </h3>
       )}
-      ;
     </>
   );
 };

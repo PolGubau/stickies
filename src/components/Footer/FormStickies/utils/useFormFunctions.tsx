@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "src/redux/app/hooks";
-import { toggleFormActionCreator } from "src/redux/features/formSlice";
+import { togglePopupActionCreator } from "src/redux/features/popupSlice";
 
 const useFormFunctions = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const useFormFunctions = () => {
     },
     handleMinimize: (e: any) => {
       e.preventDefault();
-      dispatch(toggleFormActionCreator());
+      dispatch(togglePopupActionCreator("newSticky"));
     },
   };
 };

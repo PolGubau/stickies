@@ -2,6 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { userWantsBlurs } from "src/constants/values";
+import { useAppDispatch } from "src/redux/app/hooks";
+import { togglePopupActionCreator } from "src/redux/features/popupSlice";
+import { ListOfPopups } from "src/Interfaces";
 const WrapperStyled = styled.div`
   position: fixed;
   top: 0;
@@ -14,13 +17,19 @@ const WrapperStyled = styled.div`
   backdrop-filter: ${userWantsBlurs && "blur(10px)"};
   z-index: 10;
 `;
-
-const Wrapper = () => {
+export interface WrapperProps {
+  component?: ListOfPopups;
+}
+const Wrapper = ({ component }: WrapperProps) => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const goHome = () => {
+
+  const goHome = (componentToClose?: string) => {
+    componentToClose && dispatch(togglePopupActionCreator(componentToClose));
+
     navigate("/");
   };
-  return <WrapperStyled onClick={goHome}></WrapperStyled>;
+  return <WrapperStyled onClick={() => goHome(component)}></WrapperStyled>;
 };
 
 export default Wrapper;

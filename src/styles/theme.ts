@@ -40,15 +40,39 @@ export const colors = {
     dark: "#ad8878",
   },
   gray: {
-    light: "##e8e8e8",
+    light: "#dadada",
     normal: "#ccc",
     dark: "#333",
   },
   white: {
     light: "#fff",
-    normal: "#ddd",
-    dark: "#ccc",
+    normal: "#fff",
+    dark: "#fff",
+  },
+  black: {
+    light: "#000",
+    normal: "#000",
+    dark: "#000",
   },
 };
+
 export const defaultStickyColor = colors.white.normal;
-export const availableColors = Object.entries(colors);
+
+export const availableColors = Object.entries({
+  yellow: colors.yellow.normal,
+  green: colors.green.normal,
+  blue: colors.blue.normal,
+  red: colors.red.normal,
+  purple: colors.purple.normal,
+  orange: colors.orange.normal,
+  pink: colors.pink.normal,
+  gray: colors.gray.normal,
+  white: colors.white.normal,
+});
+
+export const breakpoints = {
+  mobile: "480px",
+  tablet: "768px",
+  desktop: "1024px",
+  largeDesktop: "1440px",
+};

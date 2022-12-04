@@ -2,8 +2,7 @@ import React, { useRef } from "react";
 import { useAppDispatch, useAppSelector } from "src/redux/app/hooks";
 import { actualCategories } from "src/redux/features/categoriesSlice";
 import { addStickysActioncreator } from "src/redux/features/stickiesSlice";
-import { FiMinimize2 } from "react-icons/fi";
-import { formOptions } from "src/redux/features/formSlice";
+import { popupsState } from "src/redux/features/popupSlice";
 import useFormFunctions from "./utils/useFormFunctions";
 import { FormStyled } from "./FormStyled";
 import ActionButton from "src/components/Buttons/ActionButton/ActionButton";
@@ -17,7 +16,9 @@ const Form = () => {
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const categoryRef = useRef<HTMLSelectElement>(null);
 
-  const { opened } = useAppSelector(formOptions);
+  const {
+    newSticky: { opened },
+  } = useAppSelector(popupsState);
   //
   const addNewSticky = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

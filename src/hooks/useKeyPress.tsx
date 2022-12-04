@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { toggleFormActionCreator } from "src/redux/features/formSlice";
+import { togglePopupActionCreator } from "src/redux/features/popupSlice";
 
 export const useKeyPress = (keys: any, callback: any, node = null) => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ export const useKeyPress = (keys: any, callback: any, node = null) => {
         callbackRef.current(event);
         switch (event.key) {
           case "C":
-            dispatch(toggleFormActionCreator());
+            dispatch(togglePopupActionCreator("newSticky"));
             break;
 
           default:

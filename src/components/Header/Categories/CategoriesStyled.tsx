@@ -2,6 +2,10 @@ import styled from "styled-components";
 export interface ICategoryName {
   color: string;
 }
+export interface IOptionColor {
+  color: string;
+  selected: boolean;
+}
 export const CategoriesContainerStyled = styled.section`
   display: flex;
   flex-direction: row;
@@ -55,7 +59,11 @@ export const CategoriesContainerStyled = styled.section`
   }
 `;
 
-export const OptionColor = styled.option<ICategoryName>`
+export const OptionColor = styled.option<IOptionColor>`
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  border: 1px solid black;
   background-color: ${(props) => props.color};
 `;
 export const CategoryName = styled.button<ICategoryName>`
