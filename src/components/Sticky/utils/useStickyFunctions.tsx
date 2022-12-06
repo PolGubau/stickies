@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ICategories, ICategory, ISticky } from "src/Interfaces";
+import { ISticky } from "src/Interfaces";
 import { useAppDispatch, useAppSelector } from "src/redux/app/hooks";
 import {
   actualStickies,

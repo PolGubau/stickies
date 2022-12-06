@@ -10,7 +10,7 @@ import ButtonsLeft from "./components/Footer/ButtonsLeft/ButtonsLeft";
 import NewCategory from "./components/PopUps/NewCategory/NewCategory";
 
 const App = () => {
-  useKeyPress(["C", "A"], () => {});
+  useKeyPress(["C", "N"], () => {});
   const popups = useAppSelector(popupsState);
 
   return (

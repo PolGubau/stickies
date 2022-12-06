@@ -5,6 +5,7 @@ import {
   actualCategories,
   addCategoryActionCreator,
   deleteCategoryActionCreator,
+  updateCategoryActionCreator,
 } from "src/redux/features/categoriesSlice";
 import { addSelectedCategoryActionCreator } from "src/redux/features/selectedCategoriesSlice";
 import { defaultStickyColor } from "src/styles/theme";
@@ -42,16 +43,16 @@ const useCategoriesFunctions = () => {
       );
       return isNameAlreadyUsed;
     },
-    updateCategory: (oldCategory: ICategory, event: any) => {
-      console.log("updateCategory", oldCategory, event);
+    updateCategory: (oldCategory: ICategory, field: string, value: string) => {
+  
 
-      // const newCategory = {
-      //   ...oldCategory,
-      //   name: event.target.value,
-      // };
-
-      // dispatch(addCategoryActionCreator(newCategory));
+      const newCategory = {
+        ...oldCategory,
+        [field]: value,
+      };
+      dispatch(updateCategoryActionCreator(newCategory));
     },
+
     deleteCategory: (categoryId: string | number) => {
       dispatch(deleteCategoryActionCreator(categoryId));
     },

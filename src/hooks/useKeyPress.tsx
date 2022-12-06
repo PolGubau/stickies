@@ -17,13 +17,27 @@ export const useKeyPress = (keys: any, callback: any, node = null) => {
       if (keys.includes(event.key) && event.shiftKey) {
         // call the callback
         callbackRef.current(event);
-        switch (event.key) {
-          case "C":
-            dispatch(togglePopupActionCreator("newSticky"));
-            break;
+        if (
+          document.activeElement?.tagName !== "INPUT" &&
+          document.activeElement?.tagName !== "TEXTAREA"
+        ) {
+          switch (event.key) {
+            case "N":
+              if (window.location.pathname === "/") {
+                dispatch(togglePopupActionCreator("newSticky"));
+              }
+              break;
+            case "C":
+              if (window.location.pathname === "/") {
+                // only if the user is not typing in any input
 
-          default:
-            break;
+                dispatch(togglePopupActionCreator("newCategory"));
+              }
+              break;
+
+            default:
+              break;
+          }
         }
       }
     },

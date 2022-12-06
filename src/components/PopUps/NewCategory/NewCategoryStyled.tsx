@@ -17,7 +17,12 @@ export const NewCategoryStyled = styled.article`
   gap: 10px;
   align-items: flex-start;
   align-content: flex-start;
-
+  @media screen and (max-width: ${breakpoints.mobile}) {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
   .articleCreate {
     flex-grow: 1;
     background-color: ${colors.red.light};
@@ -28,7 +33,9 @@ export const NewCategoryStyled = styled.article`
     align-items: flex-start;
     justify-content: flex-start;
     align-content: flex-start;
-
+    h2 {
+      margin: 5px 0;
+    }
     .formCreate {
       display: flex;
       flex-direction: row;
@@ -48,6 +55,7 @@ export const NewCategoryStyled = styled.article`
         align-items: flex-start;
         justify-content: center;
         gap: 10px;
+
         input {
           font-size: 1.2rem;
           border: 1px solid ${colors.gray.dark};
@@ -91,17 +99,51 @@ export const NewCategoryStyled = styled.article`
   }
   .articleEdit {
     padding: 20px 40px;
-    min-width: 500px;
+
     flex-grow: 1.7;
-    .categoryColor {
-      width: 100%;
+    display: flex;
+    flex-direction: column;
+    .categories {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .category {
       display: flex;
       flex-direction: row;
+      gap: 10px;
+      flex-wrap: wrap;
+      width: 100%;
+      align-content: center;
       justify-content: flex-start;
+      align-items: flex-start;
+      padding: 4px;
+      border-radius: 20px;
+      background-color: ${colors.gray.light};
+    }
+    .inputName {
+      display: flex;
+      flex-direction: row;
+      border: 1px solid ${colors.gray.dark};
+      border-radius: 20px;
+      padding: 5px 10px;
+    }
+    .categoryColor {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: flex-start;
+      align-items: flex-start;
+      max-width: 600px;
+      flex-grow: 1;
+      div {
+        max-width: 20px;
+      }
     }
   }
 `;
-export const OptionColor = styled.option<IOptionColor>`
+export const OptionColor = styled.div<IOptionColor>`
   display: flex;
   margin: 3px;
   flex-grow: 1;

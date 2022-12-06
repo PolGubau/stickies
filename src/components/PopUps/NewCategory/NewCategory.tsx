@@ -7,6 +7,7 @@ import { availableColors } from "src/styles/theme";
 import { NewCategoryStyled } from "./NewCategoryStyled";
 import { actualCategories } from "src/redux/features/categoriesSlice";
 import { useAppSelector } from "src/redux/app/hooks";
+import { ICategory } from "src/Interfaces";
 
 const NewCategory = () => {
   const { categories } = useAppSelector(actualCategories) || [];
@@ -29,6 +30,20 @@ const NewCategory = () => {
       ? setIsNameAlreadyUsed(f.validateNewName(newName))
       : false;
     return validated;
+  };
+  const validateName = (name: string) => {
+    const validated = name
+      ? setIsNameAlreadyUsed(f.validateNewName(name))
+      : false;
+    return validated;
+  };
+  const handleUpdateName = (
+    category: ICategory,
+    e: FormEvent<HTMLInputElement>
+  ) => {
+    const name = e.currentTarget.value;
+    validateName(name);
+    f.updateCategory(category, "name", name);
   };
 
   return (
@@ -75,9 +90,10 @@ const NewCategory = () => {
               <div className="category" key={category.id}>
                 <div className="categoryName">
                   <input
+                    className="inputName"
                     type="text"
                     defaultValue={category.name}
-                    onChange={(e) => f.updateCategory(category, e)}
+                    onChange={(e) => handleUpdateName(category, e)}
                   />
                 </div>
                 <div className="categoryColor">
@@ -86,7 +102,9 @@ const NewCategory = () => {
                       key={color[0]}
                       color={color[1]}
                       selected={color[1] === category.color}
-                      onClick={(e) => f.updateCategory(category, e)}
+                      onClick={(e) =>
+                        f.updateCategory(category, "color", color[1])
+                      }
                     />
                   ))}
                 </div>

@@ -40,13 +40,20 @@ export const categoriesSlice = createSlice({
       if (category) {
         category.name = name;
         category.color = color;
+        category.updatedAt = new Date().toISOString();
       }
+      localStorage.setItem(
+        LOCAL_STORAGE_KEY.categories,
+        JSON.stringify(state.categories)
+      );
     },
     deleteCategory: (state, action) => {
-      console.log("deleteCategory", action.payload);
-
       state.categories = state.categories.filter(
         (category) => category.id !== action.payload
+      );
+      localStorage.setItem(
+        LOCAL_STORAGE_KEY.categories,
+        JSON.stringify(state.categories)
       );
     },
   },
