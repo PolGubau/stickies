@@ -9,7 +9,6 @@ export const NewCategoryStyled = styled.article`
   gap: 10px;
   align-items: flex-start;
   align-content: flex-start;
-  height: 100%;
   align-items: stretch;
   flex: 1;
 
@@ -18,10 +17,11 @@ export const NewCategoryStyled = styled.article`
     background-color: ${colors.red.light};
     display: flex;
     flex-direction: column;
+
     padding: 20px 40px;
     gap: 10px;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
     align-content: flex-start;
     h2 {
       margin: 5px 0;
@@ -95,6 +95,7 @@ export const NewCategoryStyled = styled.article`
     flex-grow: 1.7;
     display: flex;
     flex-direction: column;
+    padding-bottom: 50px;
     .categories {
       display: flex;
       flex-direction: column-reverse;

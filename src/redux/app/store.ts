@@ -3,13 +3,14 @@ import stickiesReducer from "../features/stickiesSlice";
 import categoryReducer from "../features/categoriesSlice";
 import selectedCategoriesReducer from "../features/selectedCategoriesSlice";
 import popupReducer from "../features/popupSlice";
-
+import settingsReducer from "../features/settingsSlice";
 export const store = configureStore({
   reducer: {
     stickies: stickiesReducer,
     categories: categoryReducer,
     selectedCategories: selectedCategoriesReducer,
     popup: popupReducer,
+    settings: settingsReducer,
   },
 });
 

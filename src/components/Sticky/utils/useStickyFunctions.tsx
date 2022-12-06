@@ -15,8 +15,8 @@ const useStickyFunctions = () => {
     closeSticky: () => {
       navigate("/");
     },
-    openSticky: (id: string, opened: boolean) => {
-      !opened && navigate(`/sticky/${id}`);
+    openSticky: (id: string) => {
+      navigate(`/sticky/${id}`);
     },
     deleteSticky: (id: string) => {
       console.log("delete sticky");

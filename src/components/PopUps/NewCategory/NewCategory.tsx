@@ -8,13 +8,16 @@ import { useAppSelector } from "src/redux/app/hooks";
 import { ICategory } from "src/Interfaces";
 import ActionButton from "src/components/Buttons/ActionButton/ActionButton";
 import Popup from "../Popup";
+import { MAX_CATEGORIES } from "src/constants/values";
 
 const NewCategory = () => {
   const { categories } = useAppSelector(actualCategories) || [];
 
   const f = useCategoriesFunctions();
   const categoryRef = useRef<HTMLInputElement>(null);
-  const [colorSelected, setColorSelected] = useState(availableColors[0][1]);
+  const [colorSelected, setColorSelected] = useState(
+    availableColors[0][1].light
+  );
   const [isNameAlreadyUsed, setIsNameAlreadyUsed] = useState(false);
 
   const handleNewCategory = (e: any) => {
@@ -26,7 +29,7 @@ const NewCategory = () => {
     f.createCategory(newCategory);
     //reset inputs
     categoryRef.current!.value = "";
-    setColorSelected(availableColors[0][1]);
+    setColorSelected(availableColors[0][1].light);
   };
   const validateNewName = () => {
     const newName = categoryRef.current?.value;
@@ -59,6 +62,7 @@ const NewCategory = () => {
             <form className="formCreate" onSubmit={(e) => handleNewCategory(e)}>
               <div className="formInputs">
                 <input
+                  disabled={categories.length >= MAX_CATEGORIES}
                   onChange={validateNewName}
                   type="text"
                   placeholder="Crea una categoría"
@@ -67,14 +71,19 @@ const NewCategory = () => {
                 {isNameAlreadyUsed && (
                   <p className="error">El nombre ya está en uso</p>
                 )}
+                {categories.length >= MAX_CATEGORIES && (
+                  <p className="error">
+                    Has alcanzado el numero máximo de categorías
+                  </p>
+                )}
                 <div className="categoryColor">
                   {availableColors.map((color) => (
                     <OptionColor
                       key={color[0]}
-                      color={color[1]}
-                      selected={color[1] === colorSelected}
+                      color={color[1].light}
+                      selected={color[1].light === colorSelected}
                       onClick={() => {
-                        setColorSelected(color[1]);
+                        setColorSelected(color[1].light);
                       }}
                     />
                   ))}
@@ -101,10 +110,10 @@ const NewCategory = () => {
                       {availableColors.map((color) => (
                         <OptionColor
                           key={color[0]}
-                          color={color[1]}
-                          selected={color[1] === category.color}
+                          color={color[1].light}
+                          selected={color[1].light === category.color}
                           onClick={() => {
-                            f.updateCategory(category, "color", color[1]);
+                            f.updateCategory(category, "color", color[1].light);
                           }}
                         />
                       ))}

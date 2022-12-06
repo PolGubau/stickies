@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export interface ICategoryName {
-  color: string;
+  color: any;
 }
 export interface IOptionColor {
   color: string;
@@ -19,7 +19,7 @@ export const CategoriesContainerStyled = styled.section`
   align-items: stretch;
 `;
 
-export const OptionColor = styled.option<IOptionColor>`
+export const OptionColor = styled.div<IOptionColor>`
   width: 20px;
   height: 20px;
   border-radius: 50px;
@@ -27,12 +27,17 @@ export const OptionColor = styled.option<IOptionColor>`
   background-color: ${(props) => props.color};
 `;
 export const CategoryName = styled.button<ICategoryName>`
-  background-color: ${(props) => props.color};
+  background-color: ${(props) => props.color.normal};
   margin: 0;
   padding: 0px 15px;
   height: 50px;
+  min-width: 50px;
 
   border-radius: 20px;
   cursor: pointer;
   border: 1px solid black;
+  :hover {
+    background-color: ${(props) => props.color.dark};
+    transform: scale(0.95);
+  }
 `;

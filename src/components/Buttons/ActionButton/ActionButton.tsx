@@ -1,13 +1,16 @@
 import { FiMaximize2, FiMinimize2 } from "react-icons/fi";
 import { MdDelete, MdOutlineCreateNewFolder } from "react-icons/md";
 import { IoMdSettings } from "react-icons/io";
+import { FaList } from "react-icons/fa";
+import { BsFillGridFill } from "react-icons/bs";
+
 import styled from "styled-components";
 import { colors } from "src/styles/theme";
 export const ExpandButtonStyled = styled.button`
-  background-color: var(--dark-grey);
-  color: var(--light-grey);
-  border: 1px solid var(--orange-dark);
+  background-color: ${colors.gray.dark};
+  color: ${colors.gray.light};
   border-radius: 20px;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,6 +30,8 @@ const ActionButton = ({ iconName = "default" }) => {
       {iconName === "expand" && <FiMaximize2 />}
       {iconName === "minimize" && <FiMinimize2 />}
       {iconName === "settings" && <IoMdSettings />}
+      {iconName === "list" && <FaList />}
+      {iconName === "grid" && <BsFillGridFill />}
       {iconName === "newCategory" && <MdOutlineCreateNewFolder />}
     </ExpandButtonStyled>
   );

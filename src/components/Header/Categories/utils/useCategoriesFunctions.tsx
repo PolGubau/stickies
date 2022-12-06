@@ -8,7 +8,7 @@ import {
   updateCategoryActionCreator,
 } from "src/redux/features/categoriesSlice";
 import { addSelectedCategoryActionCreator } from "src/redux/features/selectedCategoriesSlice";
-import { defaultStickyColor } from "src/styles/theme";
+import { availableColors, defaultStickyColor } from "src/styles/theme";
 
 const useCategoriesFunctions = () => {
   const dispatch = useAppDispatch();
@@ -20,11 +20,11 @@ const useCategoriesFunctions = () => {
     },
     createCategory: (category: any) => {
       if (categories.length < MAX_CATEGORIES) {
-        const newId = `category-  ${Math.floor(
-          Math.random() * 1000000
-        ).toString(36)}`;
+        const id = `category-${Math.floor(Math.random() * 1000000).toString(
+          36
+        )}`;
         const newCategory = {
-          id: newId,
+          id,
           name: category.name,
           color: category.color,
         };
@@ -44,8 +44,6 @@ const useCategoriesFunctions = () => {
       return isNameAlreadyUsed;
     },
     updateCategory: (oldCategory: ICategory, field: string, value: string) => {
-  
-
       const newCategory = {
         ...oldCategory,
         [field]: value,
@@ -55,6 +53,12 @@ const useCategoriesFunctions = () => {
 
     deleteCategory: (categoryId: string | number) => {
       dispatch(deleteCategoryActionCreator(categoryId));
+    },
+    getColorByItsLight: (color: string) => {
+      const colorObject = availableColors.find(
+        (availableColor) => availableColor[1].light === color
+      );
+      return colorObject;
     },
   };
 };

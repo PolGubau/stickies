@@ -57,17 +57,18 @@ export const colors = {
 };
 
 export const defaultStickyColor = colors.white.normal;
+export const defaultCategoryColor = colors.gray;
 
 export const availableColors = Object.entries({
-  yellow: colors.yellow.normal,
-  green: colors.green.normal,
-  blue: colors.blue.normal,
-  red: colors.red.normal,
-  purple: colors.purple.normal,
-  orange: colors.orange.normal,
-  pink: colors.pink.normal,
-  gray: colors.gray.normal,
-  white: colors.white.normal,
+  yellow: colors.yellow,
+  green: colors.green,
+  blue: colors.blue,
+  red: colors.red,
+  purple: colors.purple,
+  orange: colors.orange,
+  pink: colors.pink,
+  gray: colors.gray,
+  white: colors.white,
 });
 
 export const breakpoints = {
