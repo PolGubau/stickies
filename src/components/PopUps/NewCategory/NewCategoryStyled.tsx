@@ -3,26 +3,16 @@ import { breakpoints, colors } from "src/styles/theme";
 import styled from "styled-components";
 
 export const NewCategoryStyled = styled.article`
-  z-index: 11;
-  position: absolute;
-  top: 10vh;
-  left: 10%;
-  width: 80vw;
-  min-height: 80vh;
-  background-color: #fff;
-  border-radius: 20px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
   align-items: flex-start;
   align-content: flex-start;
-  @media screen and (max-width: ${breakpoints.mobile}) {
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-  }
+  height: 100%;
+  align-items: stretch;
+  flex: 1;
+
   .articleCreate {
     flex-grow: 1;
     background-color: ${colors.red.light};
@@ -65,10 +55,13 @@ export const NewCategoryStyled = styled.article`
         }
 
         .categoryColor {
+          flex-wrap: wrap;
           width: 100%;
           display: flex;
           flex-direction: row;
-          justify-content: space-between;
+          justify-content: flex-start;
+          align-items: flex-start;
+          align-content: center;
         }
       }
     }
@@ -99,34 +92,44 @@ export const NewCategoryStyled = styled.article`
   }
   .articleEdit {
     padding: 20px 40px;
-
     flex-grow: 1.7;
     display: flex;
     flex-direction: column;
     .categories {
       display: flex;
-      flex-direction: column;
+      flex-direction: column-reverse;
       gap: 10px;
     }
     .category {
       display: flex;
       flex-direction: row;
       gap: 10px;
-      flex-wrap: wrap;
       width: 100%;
       align-content: center;
-      justify-content: flex-start;
-      align-items: flex-start;
-      padding: 4px;
-      border-radius: 20px;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: nowrap;
+      padding: 10px;
+      border-radius: 30px;
       background-color: ${colors.gray.light};
+      .inputgroups {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+        flex-grow: 1;
+      }
     }
-    .inputName {
+    .categoryName {
       display: flex;
       flex-direction: row;
+      justify-content: center;
       border: 1px solid ${colors.gray.dark};
       border-radius: 20px;
-      padding: 5px 10px;
+      height: 40px;
+      align-items: center;
+      padding: 0 10px;
     }
     .categoryColor {
       display: flex;
@@ -137,8 +140,13 @@ export const NewCategoryStyled = styled.article`
       align-items: flex-start;
       max-width: 600px;
       flex-grow: 1;
+      min-width: 130px;
+
+      justify-content: flex-start;
+      flex-wrap: wrap;
       div {
         max-width: 20px;
+        min-width: 15px;
       }
     }
   }
@@ -151,6 +159,7 @@ export const OptionColor = styled.div<IOptionColor>`
   aspect-ratio: 1/1;
   border-radius: 50%;
   max-width: 30px;
-  border: 1px solid black;
   background-color: ${(props) => props.color};
+  border: ${(props) =>
+    props.selected ? "3px solid black" : "1px solid black"};
 `;

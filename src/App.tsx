@@ -26,9 +26,8 @@ const App = () => {
           <StickiesList />
         </section>
         <section className="footerSection">
-          <div>
-            <ButtonsLeft />
-          </div>
+          <ButtonsLeft />
+
           <OptionsAside />
         </section>
       </main>

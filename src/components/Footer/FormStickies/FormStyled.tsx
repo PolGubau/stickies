@@ -79,7 +79,7 @@ export const FormStyled = styled.form`
 
   .downFixed {
     position: fixed;
-    bottom: 30px;
-    left: 30px;
+    bottom: 20px;
+    left: 20px;
   }
 `;

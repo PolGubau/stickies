@@ -1,42 +1,18 @@
-import { useAppSelector } from "src/redux/app/hooks";
+import ActionButton from "src/components/Buttons/ActionButton/ActionButton";
+import { useAppSelector, useAppDispatch } from "src/redux/app/hooks";
 import { actualCategories } from "src/redux/features/categoriesSlice";
-import {
-  CategoriesContainerStyled,
-  CategoryName,
-} from "./CategoriesStyled";
+import { openPopupActionCreator } from "src/redux/features/popupSlice";
+import { CategoriesContainerStyled, CategoryName } from "./CategoriesStyled";
 import useCategoriesFunctions from "./utils/useCategoriesFunctions";
 //
 
 const Categories = () => {
+  const dispatch = useAppDispatch();
   const f = useCategoriesFunctions();
   const { categories } = useAppSelector(actualCategories) || [];
 
-
-
   return (
     <CategoriesContainerStyled>
-      {/* <form className="formCategories" onSubmit={(e) => handleNewCategory(e)}>
-        <input
-          className="nomCategoria"
-          type="text"
-          placeholder="Crea una categoría"
-          ref={categoryRef}
-        />
-
-        <select className="chooseColor" ref={colorRef}>
-          {availableColors.map((color) => {
-            return (
-              <OptionColor color={color[1]} value={color[1]} key={color[0]}>
-                {color[0]}
-              </OptionColor>
-            );
-          })}
-        </select>
-
-        <button type="submit" className="submit">
-          <MdOutlineCreateNewFolder size={30} />
-        </button>
-      </form> */}
       {categories.map((category: any) => (
         <CategoryName
           onClick={() => f.selectThisCategory(category)}
@@ -46,6 +22,9 @@ const Categories = () => {
           {category.name}
         </CategoryName>
       ))}
+      <div onClick={() => dispatch(openPopupActionCreator("newCategory"))}>
+        <ActionButton iconName="newCategory" />
+      </div>
     </CategoriesContainerStyled>
   );
 };

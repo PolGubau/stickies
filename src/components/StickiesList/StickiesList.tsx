@@ -1,20 +1,15 @@
 import { ICategory, ISticky } from "src/Interfaces";
-import { useAppSelector, useAppDispatch } from "src/redux/app/hooks";
+import { useAppSelector } from "src/redux/app/hooks";
 import { actualStickies } from "src/redux/features/stickiesSlice";
 import "./StickiesListStyles.css";
 import Sticky from "../Sticky/Sticky";
-import { TiDelete } from "react-icons/ti";
-import {
-  actualSelectedCategories,
-  removeSelectedCategoryActionCreator,
-} from "src/redux/features/selectedCategoriesSlice";
+import { actualSelectedCategories } from "src/redux/features/selectedCategoriesSlice";
 import { useParams } from "react-router-dom";
 import useStickiesListFunctions from "./utils/useStickiesListFunctions";
 import SelectedCategories from "./SelectedCategories/SelectedCategories";
 const StickiesList = () => {
   const { stickyId } = useParams();
   const fsl = useStickiesListFunctions();
-  const dispatch = useAppDispatch();
 
   const { selectedCategories } = useAppSelector(actualSelectedCategories);
 

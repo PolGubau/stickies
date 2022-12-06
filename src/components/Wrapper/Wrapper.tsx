@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { userWantsBlurs } from "src/constants/values";
 import { useAppDispatch } from "src/redux/app/hooks";
-import { togglePopupActionCreator } from "src/redux/features/popupSlice";
+import { closeAllPopupsActionCreator } from "src/redux/features/popupSlice";
 import { ListOfPopups } from "src/Interfaces";
 const WrapperStyled = styled.div`
   position: fixed;
@@ -24,12 +24,11 @@ const Wrapper = ({ component }: WrapperProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const goHome = (componentToClose?: string) => {
-    componentToClose && dispatch(togglePopupActionCreator(componentToClose));
-
+  const goHome = () => {
+    dispatch(closeAllPopupsActionCreator());
     navigate("/");
   };
-  return <WrapperStyled onClick={() => goHome(component)}></WrapperStyled>;
+  return <WrapperStyled onClick={goHome}></WrapperStyled>;
 };
 
 export default Wrapper;
