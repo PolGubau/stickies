@@ -1,4 +1,4 @@
-# Stickies
+# Stickies 📖
 
 A project designed and coded by [Pol Gubau Amores](https://www.polgubauamores.me/).
 
