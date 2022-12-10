@@ -19,13 +19,4 @@ export const AppStyled = styled.main`
     width: 100%;
     flex-grow: 1;
   }
-
-  .footerSection {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    width: 100%;
-    justify-content: space-between;
-  }
 `;

@@ -23,6 +23,9 @@ const ButtonsRight = () => {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
   `;
   return (
     <ButtonsRightStyled>
