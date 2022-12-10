@@ -4,8 +4,11 @@ import { actualCategories } from "src/redux/features/categoriesSlice";
 import { addStickysActioncreator } from "src/redux/features/stickiesSlice";
 import { popupsState } from "src/redux/features/popupSlice";
 import useFormFunctions from "./utils/useFormFunctions";
-import { FormStyled } from "./FormStyled";
+import { CheckBoxButton, FormStyled } from "./FormStyled";
 import ActionButton from "src/components/Buttons/ActionButton/ActionButton";
+import { BsFillLockFill, BsFillUnlockFill } from "react-icons/bs";
+import { BiPlus } from "react-icons/bi";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Form = () => {
   const f = useFormFunctions();
@@ -34,6 +37,9 @@ const Form = () => {
     descriptionRef.current!.value = "";
     categoryRef.current!.value = "";
   };
+  const toggleIsVisible = () => {
+    setIsStickyPrivate(!isStickyPrivate);
+  };
 
   return !opened ? (
     <div className="downFixed" onClick={f.handleMinimize}>
@@ -54,27 +60,28 @@ const Form = () => {
         <textarea
           name="description"
           ref={descriptionRef}
-          placeholder="Ponle una bonita descripción"
+          placeholder="Escribe una bonita descripción"
         />
-        <select className="categorySelector" ref={categoryRef}>
-          <option hidden={true} value="">
-            Ponle una categoría
-          </option>
-          <option value={""}>Sin categoría</option>
-          {categories.map((category: any) => (
-            <option value={category.name} key={category.id}>
-              {category.name}
+        <div className="categorySelectorContainer">
+          <i className="iconSelect">
+            <RiArrowDropDownLine />
+          </i>
+          <select className="categorySelector" ref={categoryRef}>
+            <option hidden={true} value="">
+              Ponle una categoría
             </option>
-          ))}
-        </select>
-        <label htmlFor="private">¿Quieres que sea privado?</label>
-        <input
-          type="checkbox"
-          name="private"
-          onChange={(e) => {
-            setIsStickyPrivate(e.target.checked);
-          }}
-        />
+            <option value={""}>Sin categoría</option>
+            {categories.map((category: any) => (
+              <option value={category.name} key={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <CheckBoxButton clicked={isStickyPrivate} onClick={toggleIsVisible}>
+          <p>¿Quieres que sea privado?</p>
+          {isStickyPrivate ? <BsFillLockFill /> : <BsFillUnlockFill />}
+        </CheckBoxButton>
         <div className="buttonsContainer">
           <div className="minimizeButton formShape" onClick={f.handleMinimize}>
             <ActionButton iconName="minimize" />
@@ -82,6 +89,7 @@ const Form = () => {
 
           <button type="submit" className="submitButton">
             Crear sticky
+            <BiPlus size={20} />
           </button>
         </div>
       </FormStyled>

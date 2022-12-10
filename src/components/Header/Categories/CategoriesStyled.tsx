@@ -1,3 +1,4 @@
+import { shapes } from "src/styles/theme";
 import styled from "styled-components";
 export interface ICategoryName {
   color: string;
@@ -31,7 +32,7 @@ export const CategoryName = styled.button<ICategoryName>`
   margin: 0;
   padding: 5px 10px;
   min-width: 50px;
-  border-radius: 20px;
+  border-radius: ${shapes.borderRadius.large};
   cursor: pointer;
   border: 1px solid black;
   display: flex;

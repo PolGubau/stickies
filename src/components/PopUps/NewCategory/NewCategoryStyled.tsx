@@ -1,6 +1,6 @@
 import { IOptionColor } from "src/components/Header/Categories/CategoriesStyled";
 import { appearWithZoom } from "src/styles/animations";
-import { breakpoints, colors } from "src/styles/theme";
+import { breakpoints, colors, shapes } from "src/styles/theme";
 import styled from "styled-components";
 
 export const NewCategoryStyled = styled.article`
@@ -64,7 +64,7 @@ export const NewCategoryStyled = styled.article`
         input {
           font-size: 1.2rem;
           border: 1px solid ${colors.gray.dark};
-          border-radius: 20px;
+          border-radius: ${shapes.borderRadius.large};
           padding: 5px 10px;
           width: 100%;
         }
@@ -84,7 +84,7 @@ export const NewCategoryStyled = styled.article`
       background-color: var(--dark-grey);
       color: var(--light-grey);
       border: 0px solid var(--orange-dark);
-      border-radius: 20px;
+      border-radius: ${shapes.borderRadius.large};
       padding: 0 15px;
       display: flex;
       gap: 5px;
@@ -142,7 +142,7 @@ export const NewCategoryStyled = styled.article`
       flex-direction: row;
       justify-content: center;
       border: 1px solid ${colors.gray.dark};
-      border-radius: 20px;
+      border-radius: ${shapes.borderRadius.large};
       height: 40px;
       align-items: center;
       padding: 0 10px;

@@ -9,16 +9,9 @@ export const AppStyled = styled.main`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  background: ${colors.gray.light};
+  background: ${colors.white.light};
   background-image: radial-gradient(${colors.gray.dark} 1px, transparent 0);
   background-size: 50px 50px;
-
-  .title {
-    font-size: 3rem;
-    font-weight: bold;
-    line-height: 1.5;
-    margin: 0 0 2rem 0;
-  }
 
   .stickiesList {
     display: flex;
@@ -35,6 +28,4 @@ export const AppStyled = styled.main`
     width: 100%;
     justify-content: space-between;
   }
-
-
 `;

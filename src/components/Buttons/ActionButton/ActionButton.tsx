@@ -2,11 +2,14 @@ import { FiMaximize2, FiMinimize2 } from "react-icons/fi";
 import { MdDelete, MdDone, MdOutlineCreateNewFolder } from "react-icons/md";
 import { IoMdSend, IoMdSettings } from "react-icons/io";
 import { FaList } from "react-icons/fa";
-import { BiLockAlt, BiLockOpenAlt } from "react-icons/bi";
-import { BsFillGridFill } from "react-icons/bs";
+import {
+  BsFillGridFill,
+  BsFillLockFill,
+  BsFillUnlockFill,
+} from "react-icons/bs";
 
 import styled from "styled-components";
-import { colors } from "src/styles/theme";
+import { colors, shapes } from "src/styles/theme";
 interface ActionButtonStyledProps {
   disabled?: boolean;
   color: any;
@@ -17,7 +20,7 @@ export const ExpandButtonStyled = styled.button<ActionButtonStyledProps>`
     props.disabled ? props.color.normal : props.color.dark};
   color: ${(props) =>
     props.disabled ? colors.gray.dark : colors.white.normal};
-  border-radius: 20px;
+  border-radius: ${shapes.borderRadius.large};
   border: none;
   display: flex;
   justify-content: center;
@@ -59,8 +62,8 @@ const ActionButton = ({
 }) => {
   return (
     <ExpandButtonStyled disabled={disabled} type={type} color={color}>
-      {iconName === "lock" && <BiLockAlt />}
-      {iconName === "unlock" && <BiLockOpenAlt />}
+      {iconName === "lock" && <BsFillLockFill />}
+      {iconName === "unlock" && <BsFillUnlockFill />}
       {iconName === "delete" && <MdDelete />}
       {iconName === "expand" && <FiMaximize2 />}
       {iconName === "minimize" && <FiMinimize2 />}

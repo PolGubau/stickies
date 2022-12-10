@@ -1,4 +1,4 @@
-import { colors } from "src/styles/theme";
+import { colors, shapes } from "src/styles/theme";
 import styled from "styled-components";
 
 export const HiddenStickiesTitle = styled.h3`
@@ -10,7 +10,7 @@ export const HiddenStickiesTitle = styled.h3`
   justify-content: center;
 
   border: 1px solid ${colors.gray.dark};
-  border-radius: 20px;
+  border-radius: ${shapes.borderRadius.large};
   width: fit-content;
   background-color: ${colors.gray.light};
   :hover {

@@ -11,8 +11,8 @@ export const colors = {
   },
   blue: {
     light: "#d4ffff",
-    normal: "#b1ffff",
-    dark: "#82ffff",
+    normal: "#82cfcf",
+    dark: "#20b3b3",
   },
   red: {
     light: "#ffe0e0",
@@ -76,4 +76,12 @@ export const breakpoints = {
   tablet: "768px",
   desktop: "1024px",
   largeDesktop: "1440px",
+};
+
+export const shapes = {
+  borderRadius: {
+    small: "5px",
+    medium: "10px",
+    large: "20px",
+  },
 };

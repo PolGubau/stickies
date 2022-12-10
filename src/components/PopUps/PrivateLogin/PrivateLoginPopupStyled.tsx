@@ -1,4 +1,4 @@
-import { colors } from "src/styles/theme";
+import { colors, shapes } from "src/styles/theme";
 import styled from "styled-components";
 
 export const PrivateLoginPopupStyled = styled.article`
@@ -28,7 +28,7 @@ export const PrivateLoginPopupStyled = styled.article`
       padding: 5px 10px;
       font-size: 1.2rem;
       border: 1px solid ${colors.gray.dark};
-      border-radius: 20px;
+      border-radius: ${shapes.borderRadius.large};
     }
   }
   .resetPasswordContainer {
