@@ -1,4 +1,4 @@
-import { shapes } from "src/styles/theme";
+import { breakpoints, shapes } from "src/styles/theme";
 import styled from "styled-components";
 export interface ICategoryName {
   color: string;
@@ -18,6 +18,9 @@ export const CategoriesContainerStyled = styled.section`
   height: 100%;
   margin: 0;
   align-items: stretch;
+  @media screen and (max-width: ${breakpoints.mobile}) {
+    justify-content: flex-end;
+  }
 `;
 
 export const OptionColor = styled.div<IOptionColor>`

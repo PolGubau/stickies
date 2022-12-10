@@ -12,6 +12,7 @@ export const HeaderStyled = styled.header`
   margin: 0;
   overflow-x: hidden;
   width: 100%;
+  
   h1 {
     margin: 0;
     font-size: 2rem;
