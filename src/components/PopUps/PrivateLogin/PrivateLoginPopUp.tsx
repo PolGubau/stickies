@@ -42,7 +42,7 @@ const PrivateLoginPopUp = () => {
     setCheckPassword("");
   };
   const handleDeletePassword = () => {
-    window.confirm("Are you sure you want to reset your private Stickies?") &&
+    window.confirm("¿Estás seguro? Esto borrará todos tus Stickers privados") &&
       dispatch(setPasswordActionCreator(""));
     dispatch(changeShowingPrivateActionCreator(false));
     dispatch(closeAllPopupsActionCreator());
@@ -52,10 +52,10 @@ const PrivateLoginPopUp = () => {
   return (
     <Popup>
       <PrivateLoginPopupStyled>
-        <h2>Private Stickies</h2>
+        <h2>Stickies privados</h2>
         {prevPassword ? (
           <div>
-            <p>Enter your password</p>
+            <p>Escribe tu contraseña</p>
             <form className="form" onSubmit={handleCheckPassword}>
               <input
                 value={checkPassword}
@@ -73,16 +73,16 @@ const PrivateLoginPopUp = () => {
               <ActionButton type="submit" iconName="send" />
             </form>
             <div className="resetPasswordContainer">
-              <p>Can't remember your password?</p>
+              <p>¿No recuerdas tu contraseña?</p>
               <button onClick={handleDeletePassword}>
                 <GoAlert />
-                Reset my private Stickies
+                Crear otra contraseña
               </button>
             </div>
           </div>
         ) : (
           <div>
-            <p>Create a password</p>
+            <p>Crear una contraseña</p>
             <form className="form" onSubmit={saveNewPassword}>
               <input
                 autoFocus
