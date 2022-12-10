@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { colors } from "./theme";
 
 export const GlobalStyles = createGlobalStyle`
     * {
@@ -10,12 +11,12 @@ html,
 body {
   padding: 0;
   margin: 0;
-
+background-color: ${colors.white.normal};
 }
 
 
 a {
-  color: inherit;
+  color: ${colors.gray.dark};
   text-decoration: none;
 }
 
@@ -23,14 +24,5 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 
-  body {
-    color: white;
-    background: black;
-  }
-}
     `;
