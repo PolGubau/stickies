@@ -40,7 +40,7 @@ export const colors = {
     dark: "#ad8878",
   },
   gray: {
-    light: "#dadada",
+    light: "#dbdbdb",
     normal: "#ccc",
     dark: "#333",
   },

@@ -19,7 +19,9 @@ const Categories = () => {
         return (
           <CategoryName
             onClick={() => f.selectThisCategory(category)}
-            color={colorObject ? colorObject[1] : defaultCategoryColor}
+            color={
+              colorObject ? colorObject[1].light : defaultCategoryColor.light
+            }
             key={category.id}
           >
             {category.name}

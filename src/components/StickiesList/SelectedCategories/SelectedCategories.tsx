@@ -1,5 +1,6 @@
 import { FiDelete } from "react-icons/fi";
 import { TiDelete } from "react-icons/ti";
+import { CategoryName } from "src/components/Header/Categories/CategoriesStyled";
 import { useAppSelector, useAppDispatch } from "src/redux/app/hooks";
 import {
   changeShowingPrivateActionCreator,
@@ -9,48 +10,66 @@ import {
   actualSelectedCategories,
   removeSelectedCategoryActionCreator,
 } from "src/redux/features/selectedCategoriesSlice";
-import { HiddenStickiesTitle } from "./SelectedCategoriesStyled";
+import {
+  HiddenStickiesTitle,
+  WhichCategoriesAreYouViewing,
+} from "./SelectedCategoriesStyled";
 
 const SelectedCategories = () => {
   const dispatch = useAppDispatch();
 
   const { selectedCategories } = useAppSelector(actualSelectedCategories);
+  const anySelectedCategory = selectedCategories.length > 0;
 
   const removeThisCategory = (id: string) => {
     dispatch(removeSelectedCategoryActionCreator(id));
   };
-  const popupState = useAppSelector(popupsState);
-  const isLoged = popupState.privateLogin.isLogged;
+  const {
+    privateLogin: { showingPrivate },
+  } = useAppSelector(popupsState);
 
   const handleLogout = () => {
     dispatch(changeShowingPrivateActionCreator(false));
   };
-  return (
-    <>
-      {selectedCategories.length === 0 && isLoged ? (
+
+  if (showingPrivate) {
+    return (
+      <WhichCategoriesAreYouViewing>
         <HiddenStickiesTitle onClick={handleLogout}>
           Stickies ocultos
-          <FiDelete onClick={() => {}} />
+          <FiDelete />
         </HiddenStickiesTitle>
-      ) : (
-        <h3>Todos los stickies</h3>
-      )}
-      {selectedCategories.length > 0 && (
-        <h3 className="listTitle">
-          Notas de
-          {selectedCategories.map((category: any) => (
-            <p key={category.id} className="categoryItem">
-              {category.name}
-              <TiDelete
-                size={17}
-                onClick={() => removeThisCategory(category.id)}
-              />
-            </p>
-          ))}
-        </h3>
-      )}
-    </>
-  );
+        {selectedCategories.map((category: any) => (
+          <HiddenStickiesTitle key={category.id}>
+            {category.name}
+            <TiDelete
+              size={20}
+              onClick={() => removeThisCategory(category.id)}
+            />
+          </HiddenStickiesTitle>
+        ))}
+      </WhichCategoriesAreYouViewing>
+    );
+  } else {
+    return (
+      <WhichCategoriesAreYouViewing>
+        {anySelectedCategory ? (
+          <h3>Viendo los stickies de</h3>
+        ) : (
+          <h3>Todos los stickies</h3>
+        )}
+        {selectedCategories.map((category: any) => (
+          <CategoryName color={category.color} key={category.id}>
+            {category.name}
+            <TiDelete
+              size={17}
+              onClick={() => removeThisCategory(category.id)}
+            />
+          </CategoryName>
+        ))}
+      </WhichCategoriesAreYouViewing>
+    );
+  }
 };
 
 export default SelectedCategories;

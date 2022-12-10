@@ -18,3 +18,10 @@ export const HiddenStickiesTitle = styled.h3`
     color: ${colors.gray.light};
   }
 `;
+export const WhichCategoriesAreYouViewing = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row;
+`;

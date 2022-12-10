@@ -5,11 +5,13 @@ import {
   popupsState,
   togglePopupActionCreator,
 } from "src/redux/features/popupSlice";
-const OptionsAside = () => {
+import styled from "styled-components";
+const ButtonsRight = () => {
   const dispatch = useAppDispatch();
-  const popupState = useAppSelector(popupsState);
+  const {
+    privateLogin: { showingPrivate },
+  } = useAppSelector(popupsState);
 
-  const { showingPrivate } = popupState.privateLogin;
   const handleDisplayPopup = (e: any, popup: string) => {
     e.preventDefault();
     dispatch(togglePopupActionCreator(popup));
@@ -17,8 +19,13 @@ const OptionsAside = () => {
   const handleLogout = () => {
     dispatch(changeShowingPrivateActionCreator(false));
   };
+  const ButtonsRightStyled = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  `;
   return (
-    <div className="rightButtons">
+    <ButtonsRightStyled>
       {showingPrivate ? (
         <div onClick={handleLogout}>
           <ActionButton iconName="unlock" />
@@ -32,8 +39,8 @@ const OptionsAside = () => {
       <div onClick={(e) => handleDisplayPopup(e, "settings")}>
         <ActionButton iconName="settings" />
       </div>
-    </div>
+    </ButtonsRightStyled>
   );
 };
 
-export default OptionsAside;
+export default ButtonsRight;

@@ -1,3 +1,4 @@
+import { colors } from "src/styles/theme";
 import styled from "styled-components";
 
 export const FormStyled = styled.form`
@@ -14,9 +15,9 @@ export const FormStyled = styled.form`
   min-width: 300px;
   gap: 10px;
   padding: 10px;
-  border: 1px solid var(--grey);
+  border: 1px solid ${colors.gray.dark};
   border-radius: 30px;
-  background: var(--grey);
+  background: ${colors.red.light};
 
   input,
   textarea {
@@ -25,7 +26,7 @@ export const FormStyled = styled.form`
       sans-serif;
     width: 100%;
     padding: 10px;
-    border: 1px solid var(--grey);
+    border: 1px solid ${colors.gray.dark};
     border-radius: 5px;
   }
 
@@ -38,14 +39,14 @@ export const FormStyled = styled.form`
   .formTitle {
     margin: 7px 3px;
     padding: 0;
-    color: var(--dark-grey);
+    color: ${colors.gray.dark};
   }
 
   .submitButton {
     padding: 10px;
-    border: 1px solid var(--grey);
+    border: 1px solid ${colors.gray.normal};
     border-radius: 5px;
-    background-color: var(--orange);
+    background-color: ${colors.orange.normal};
     flex-grow: 1;
     border-radius: 20px;
     cursor: pointer;
@@ -65,9 +66,8 @@ export const FormStyled = styled.form`
   }
 
   .minimizeButton {
-    background-color: var(--dark-grey);
-    color: var(--light-grey);
-    border: 1px solid var(--orange-dark);
+    background-color: ${colors.gray.normal};
+    color: ${colors.gray.light};
     border-radius: 20px;
     display: flex;
     justify-content: center;

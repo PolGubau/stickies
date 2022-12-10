@@ -1,9 +1,10 @@
-* {
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyles = createGlobalStyle`
+    * {
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
-
-
 
 html,
 body {
@@ -32,15 +33,4 @@ a {
     background: black;
   }
 }
-
-:root {
-  --grey: #ccc;
-  --light-grey: #eee;
-  --dark-grey: #333;
-  --yellow: #fffcb1;
-  --yellowLight: #fffdd0;
-  --yellowDark: #b0b03d;
-  --orange: #ffd79f;
-  --orangeLight: #ffe6c2;
-  --orangeDark: #ffbf66;
-}
+    `;

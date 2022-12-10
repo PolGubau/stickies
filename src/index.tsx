@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import App from "./App";
-import "src/styles/globals.css";
 import { store } from "./redux/app/store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { GlobalStyles } from "./styles/GlobalStyles";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +21,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
+    <GlobalStyles />
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
