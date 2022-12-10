@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { closeAllPopupsActionCreator } from "src/redux/features/popupSlice";
-import { breakpoints } from "src/styles/theme";
+import { breakpoints, colors } from "src/styles/theme";
 import styled from "styled-components";
 import ActionButton from "../Buttons/ActionButton/ActionButton";
 import Wrapper from "../Wrapper/Wrapper";
@@ -16,10 +16,11 @@ const PopUpLayout = styled.section`
   width: 80vw;
   /* min-height: 80vh; */
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 30px;
   overflow-y: hidden;
   display: flex;
   align-items: stretch;
+  border: 1px solid ${colors.gray.dark};
   @media screen and (max-width: ${breakpoints.mobile}) {
     top: 0;
     left: 0;

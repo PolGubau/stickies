@@ -4,6 +4,9 @@ import { useAppDispatch, useAppSelector } from "src/redux/app/hooks";
 import {
   actualStickies,
   removeStickysActioncreator,
+  toggleArchivedActioncreator,
+  toggleCompletedActioncreator,
+  togglePrivateActioncreator,
 } from "src/redux/features/stickiesSlice";
 
 const useStickyFunctions = () => {
@@ -19,8 +22,16 @@ const useStickyFunctions = () => {
       navigate(`/sticky/${id}`);
     },
     deleteSticky: (id: string) => {
-      console.log("delete sticky");
       dispatch(removeStickysActioncreator(id));
+    },
+    toggleCompleteSticky: (id: string) => {
+      dispatch(toggleCompletedActioncreator(id));
+    },
+    toggleArchiveSticky: (id: string) => {
+      dispatch(toggleArchivedActioncreator(id));
+    },
+    togglePrivateSticky: (id: string) => {
+      dispatch(togglePrivateActioncreator(id));
     },
     shortDescription: (description: string | undefined) => {
       return description && description.length > 37

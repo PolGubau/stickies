@@ -8,19 +8,22 @@ import { useAppSelector } from "src/redux/app/hooks";
 import { ICategory } from "src/Interfaces";
 import ActionButton from "src/components/Buttons/ActionButton/ActionButton";
 import Popup from "../Popup";
-import { MAX_CATEGORIES } from "src/constants/values";
+import { MAX_CATEGORIES, MAX_CATEGORY_LENGTH } from "src/constants/values";
 
 const NewCategory = () => {
   const { categories } = useAppSelector(actualCategories) || [];
 
   const f = useCategoriesFunctions();
   const categoryRef = useRef<HTMLInputElement>(null);
-  const [colorSelected, setColorSelected] = useState(
+  const [colorSelected, setColorSelected] = useState<string>(
     availableColors[0][1].light
   );
-  const [isNameAlreadyUsed, setIsNameAlreadyUsed] = useState(false);
+  const [isNameAlreadyUsed, setIsNameAlreadyUsed] = useState<boolean>(false);
+  const [newCategoryLenght, setNewCategoryLenght] = useState<number>(0);
 
   const handleNewCategory = (e: any) => {
+    if (categories.length >= MAX_CATEGORIES) return;
+    if (isNameAlreadyUsed) return;
     e.preventDefault();
     const newCategory = {
       name: categoryRef.current?.value,
@@ -36,6 +39,7 @@ const NewCategory = () => {
     const validated = newName
       ? setIsNameAlreadyUsed(f.validateNewName(newName))
       : false;
+    setNewCategoryLenght(newName?.length || 0);
     return validated;
   };
   const validateName = (name: string) => {
@@ -52,19 +56,30 @@ const NewCategory = () => {
     validateName(name);
     f.updateCategory(category, "name", name);
   };
+  const zoomNumber = (number: number) => {
+    alert(number);
+  };
 
   return (
     <>
       <Popup>
         <NewCategoryStyled>
           <article className="articleCreate">
-            <h2>Crea una Categoría</h2>
+            <div className="headerNewCategory">
+              <h2>Crea una Categoría</h2>
+              <p className="actualLenght">
+                <span>{newCategoryLenght}</span>
+                /20
+              </p>
+            </div>
+
             <form className="formCreate" onSubmit={(e) => handleNewCategory(e)}>
               <div className="formInputs">
                 <input
                   disabled={categories.length >= MAX_CATEGORIES}
                   onChange={validateNewName}
                   type="text"
+                  maxLength={MAX_CATEGORY_LENGTH}
                   placeholder="Crea una categoría"
                   ref={categoryRef}
                 />
@@ -90,7 +105,12 @@ const NewCategory = () => {
                 </div>
               </div>
               <div onClick={(e) => handleNewCategory(e)}>
-                <ActionButton iconName="newCategory" />
+                <ActionButton
+                  disabled={
+                    categories.length >= MAX_CATEGORIES || isNameAlreadyUsed
+                  }
+                  iconName="newCategory"
+                />
               </div>
             </form>
           </article>
@@ -104,6 +124,7 @@ const NewCategory = () => {
                       className="categoryName"
                       type="text"
                       defaultValue={category.name}
+                      required
                       onChange={(e) => handleUpdateName(category, e)}
                     />
                     <div className="categoryColor">

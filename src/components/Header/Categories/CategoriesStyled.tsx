@@ -37,7 +37,8 @@ export const CategoryName = styled.button<ICategoryName>`
   cursor: pointer;
   border: 1px solid black;
   :hover {
-    background-color: ${(props) => props.color.dark};
+    /* background-color: ${(props) => props.color.dark}; */
+    filter: brightness(0.8);
     transform: scale(0.95);
   }
 `;

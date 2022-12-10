@@ -1,20 +1,15 @@
 import React from "react";
-import useCategoriesFunctions from "src/components/Header/Categories/utils/useCategoriesFunctions";
 import Wrapper from "src/components/Wrapper/Wrapper";
 import { ISticky } from "src/Interfaces";
-import { defaultStickyColor } from "src/styles/theme";
 import useStickyFunctions from "../utils/useStickyFunctions";
 import { OpenedStickyStyled } from "./OpenedStickiesStyled";
 
-function OpenedSticky({ sticky }: { sticky: ISticky }) {
+function OpenedSticky({ sticky, color }: { sticky: ISticky; color: string }) {
   const fs = useStickyFunctions();
-  const fc = useCategoriesFunctions();
-  const stickyColor = sticky.category
-    ? fc.categoryOfThisSticky(sticky.category).color ?? defaultStickyColor
-    : defaultStickyColor;
+
   return (
     <>
-      <OpenedStickyStyled bgColor={stickyColor}>
+      <OpenedStickyStyled bgColor={color}>
         <div className="stickyHeader">
           <h2 className="sticky">{sticky.title}</h2>
           <button onClick={fs.closeSticky}>X</button>

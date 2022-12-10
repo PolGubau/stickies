@@ -3,5 +3,6 @@ export const LOCAL_STORAGE_KEY = {
   categories: "categories",
   selectedCategories: "selectedCategories",
   settings: "settings",
+  password: "password",
+  showingPrivate: "isLoged",
 };
-

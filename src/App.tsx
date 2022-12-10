@@ -2,12 +2,13 @@ import "src/App.css";
 import Header from "src/components/Header/Header";
 import StickiesList from "src/components/StickiesList/StickiesList";
 import { useKeyPress } from "./hooks/useKeyPress";
-import OptionsAside from "./components/Footer/OptionsAside/OptionsAside";
+import OptionsAside from "./components/Footer/ButtonsRight/OptionsAside";
 import Settings from "./components/PopUps/Settings/Settings";
 import { useAppSelector } from "./redux/app/hooks";
 import { popupsState } from "./redux/features/popupSlice";
-import ButtonsLeft from "./components/Footer/ButtonsLeft/ButtonsLeft";
-import NewCategory from "./components/PopUps/NewCategory/NewCategory";
+import ButtonsLeft from "src/components/Footer/ButtonsLeft/ButtonsLeft";
+import NewCategory from "src/components/PopUps/NewCategory/NewCategory";
+import PrivateLoginPopUp from "src/components/PopUps/PrivateLogin/PrivateLoginPopUp";
 
 const App = () => {
   useKeyPress(["C", "N"], () => {});
@@ -18,6 +19,7 @@ const App = () => {
       {/* {Popups} */}
       {popups.settings.opened && <Settings />}
       {popups.newCategory.opened && <NewCategory />}
+      {popups.privateLogin.opened && <PrivateLoginPopUp />}
 
       {/* Layout */}
       <main className="main">

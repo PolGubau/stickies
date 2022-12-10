@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SettingsStyled = styled.article`
-  padding: 20px 40px;
+  padding: 20px 40px 40px 40px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

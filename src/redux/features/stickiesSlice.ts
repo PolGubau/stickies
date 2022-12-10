@@ -24,6 +24,8 @@ export const stickiesSlice = createSlice({
         id: Math.floor(Math.random() * 1000000).toString(36),
         createdAt: new Date().toISOString(),
         ...action.payload,
+        archived: false,
+        completed: false,
       };
       if (newSticky.category.length === 0) {
         delete newSticky.category;
@@ -66,6 +68,51 @@ export const stickiesSlice = createSlice({
         JSON.stringify(state.stickies)
       );
     },
+    toggleCompleted: (state, action) => {
+      state.stickies = state.stickies.map((sticky) => {
+        if (sticky.id === action.payload) {
+          return {
+            ...sticky,
+            completed: !sticky.completed,
+          };
+        }
+        return sticky;
+      });
+      localStorage.setItem(
+        LOCAL_STORAGE_KEY.stickies,
+        JSON.stringify(state.stickies)
+      );
+    },
+    toggleArchived: (state, action) => {
+      state.stickies = state.stickies.map((sticky) => {
+        if (sticky.id === action.payload) {
+          return {
+            ...sticky,
+            archived: !sticky.archived,
+          };
+        }
+        return sticky;
+      });
+      localStorage.setItem(
+        LOCAL_STORAGE_KEY.stickies,
+        JSON.stringify(state.stickies)
+      );
+    },
+    togglePrivate: (state, action) => {
+      state.stickies = state.stickies.map((sticky) => {
+        if (sticky.id === action.payload) {
+          return {
+            ...sticky,
+            private: !sticky.private,
+          };
+        }
+        return sticky;
+      });
+      localStorage.setItem(
+        LOCAL_STORAGE_KEY.stickies,
+        JSON.stringify(state.stickies)
+      );
+    },
   },
 });
 export const actualStickies = (state: any) => state.stickies;
@@ -75,6 +122,9 @@ export const {
   loadStickies: loadStickysActioncreator,
   removeSticky: removeStickysActioncreator,
   updateSticky: updateStickiesActioncreator,
+  toggleCompleted: toggleCompletedActioncreator,
+  toggleArchived: toggleArchivedActioncreator,
+  togglePrivate: togglePrivateActioncreator,
 } = stickiesSlice.actions;
 
 export default stickiesSlice.reducer;

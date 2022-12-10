@@ -7,6 +7,7 @@ import { actualSelectedCategories } from "src/redux/features/selectedCategoriesS
 import { useParams } from "react-router-dom";
 import useStickiesListFunctions from "./utils/useStickiesListFunctions";
 import SelectedCategories from "./SelectedCategories/SelectedCategories";
+import { popupsState } from "src/redux/features/popupSlice";
 const StickiesList = () => {
   const { stickyId } = useParams();
   const fsl = useStickiesListFunctions();
@@ -16,13 +17,21 @@ const StickiesList = () => {
   const { stickies: allStickies } = useAppSelector(actualStickies);
 
   //
-
-  const stickiesToShow =
+  const popupState = useAppSelector(popupsState);
+  const showingPrivate = popupState.privateLogin.showingPrivate;
+  const stickiesByCategory =
     selectedCategories.length === 0
       ? allStickies
       : selectedCategories.reduce((acc: ISticky[], category: ICategory) => {
           return [...acc, ...fsl.getStickiesByCategory(category)];
         }, []);
+  const stickiesToShow = showingPrivate
+    ? stickiesByCategory.filter((sticky: ISticky) => {
+        return sticky.private === true;
+      })
+    : stickiesByCategory.filter((sticky: ISticky) => {
+        return sticky.private === false;
+      });
 
   return (
     <>

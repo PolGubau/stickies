@@ -2,7 +2,11 @@ export interface ISticky {
   id: string;
   title: string;
   description?: string;
+  completed: boolean;
+  archived: boolean;
+  private: boolean;
   createdAt: string;
+  updatedAt?: string;
   category?: string;
 }
 

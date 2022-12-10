@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "src/redux/app/hooks";
 import { actualCategories } from "src/redux/features/categoriesSlice";
 import { addStickysActioncreator } from "src/redux/features/stickiesSlice";
@@ -15,7 +15,7 @@ const Form = () => {
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const categoryRef = useRef<HTMLSelectElement>(null);
-
+  const [isStickyPrivate, setIsStickyPrivate] = useState(false);
   const {
     newSticky: { opened },
   } = useAppSelector(popupsState);
@@ -26,6 +26,7 @@ const Form = () => {
       title: titleRef.current?.value,
       description: descriptionRef.current?.value,
       category: categoryRef.current?.value,
+      private: isStickyPrivate,
     };
     dispatch(addStickysActioncreator(newSticky));
     //empty the inputs
@@ -66,6 +67,14 @@ const Form = () => {
             </option>
           ))}
         </select>
+        <label htmlFor="private">¿Quieres que sea privado?</label>
+        <input
+          type="checkbox"
+          name="private"
+          onChange={(e) => {
+            setIsStickyPrivate(e.target.checked);
+          }}
+        />
         <div className="buttonsContainer">
           <div className="minimizeButton formShape" onClick={f.handleMinimize}>
             <ActionButton iconName="minimize" />

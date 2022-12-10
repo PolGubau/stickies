@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Stickies
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A project designed and coded by [Pol Gubau Amores](https://www.polgubauamores.me/).
 
-## Available Scripts
+## Utility
 
-In the project directory, you can run:
+In the project directory, you can:
 
-### `npm start`
+### `Save, Create and View stickies`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The main purpose is to create and save notes, called Stickies.\
+To view a single Sticky [/sticky/[ID]](/sticky/id) will open a more detailed view of your note.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The creation of a Sticky is done by filling the form.\
+The Sticky will be saved in the localStorage and will be available in the main page.
 
-### `npm test`
+### `Manage Categories`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Each Sticky can be assigned to a Category.\
+The Categories are managed in the Categories view, you can click the grey button near to the title.\
+The Categories are saved in the localStorage and will be available in the main page.
 
-### `npm run build`
+### `Manage Visibility`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Each Sticky can be assigned to a Visibility.\
+Visibility means if the Sticky it's showed by defaut or not.\
+You can click the locker icon to change the visibility of a Sticky.\
+The first time you click the icon, you will need to set a password.\
+The password is saved in the localStorage and will be necessary the other times you want to access this feature.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `Manage Sticky Status`
+Each Sticky can be assigned to a Status.\
+Main statuses are: `To Do`, `Doing` and `Done`.\
+You can click the status icon to change the status of a Sticky.\
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Note: this website doen't use cookies. Done to be used free and without restrictions. Do not duplicate or sell without permission.**

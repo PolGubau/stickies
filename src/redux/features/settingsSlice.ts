@@ -25,7 +25,7 @@ export const categoriesSlice = createSlice({
     },
   },
 });
-export const actualsettings = (state: any) => state.settings;
+export const actualSettings = (state: any) => state.settings;
 export const { changeStikiesLayout: changeStikiesLayoutActionCreator } =
   categoriesSlice.actions;
 

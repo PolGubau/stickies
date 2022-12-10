@@ -1,14 +1,22 @@
 import { FiMaximize2, FiMinimize2 } from "react-icons/fi";
-import { MdDelete, MdOutlineCreateNewFolder } from "react-icons/md";
-import { IoMdSettings } from "react-icons/io";
+import { MdDelete, MdDone, MdOutlineCreateNewFolder } from "react-icons/md";
+import { IoMdSend, IoMdSettings } from "react-icons/io";
 import { FaList } from "react-icons/fa";
+import { BiLockAlt, BiLockOpenAlt } from "react-icons/bi";
 import { BsFillGridFill } from "react-icons/bs";
 
 import styled from "styled-components";
 import { colors } from "src/styles/theme";
-export const ExpandButtonStyled = styled.button`
-  background-color: ${colors.gray.dark};
-  color: ${colors.gray.light};
+interface ActionButtonStyledProps {
+  disabled?: boolean;
+  color: any;
+}
+
+export const ExpandButtonStyled = styled.button<ActionButtonStyledProps>`
+  background-color: ${(props) =>
+    props.disabled ? props.color.normal : props.color.dark};
+  color: ${(props) =>
+    props.disabled ? colors.gray.dark : colors.white.normal};
   border-radius: 20px;
   border: none;
   display: flex;
@@ -18,20 +26,49 @@ export const ExpandButtonStyled = styled.button`
   height: 50px;
   font-size: 20px;
   :hover {
-    transform: scale(0.95);
-    background-color: ${colors.black.dark};
-    cursor: pointer;
+    /* transform scale unless its disabled */
+    transform: ${(props) => (props.disabled ? "none" : "scale(0.95)")};
+
+    background-color: ${(props) =>
+      props.disabled ? colors.gray.normal : colors.black.dark};
+    cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   }
 `;
-const ActionButton = ({ iconName = "default" }) => {
+export type iconNameType =
+  | "lock"
+  | "unlock"
+  | "delete"
+  | "expand"
+  | "minimize"
+  | "settings"
+  | "list"
+  | "done"
+  | "grid"
+  | "newCategory"
+  | "send";
+const ActionButton = ({
+  iconName = "expand",
+  disabled = false,
+  type = "button",
+  color = colors.gray,
+}: {
+  iconName?: iconNameType;
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset";
+  color?: { light: string; normal: string; dark: string };
+}) => {
   return (
-    <ExpandButtonStyled>
+    <ExpandButtonStyled disabled={disabled} type={type} color={color}>
+      {iconName === "lock" && <BiLockAlt />}
+      {iconName === "unlock" && <BiLockOpenAlt />}
       {iconName === "delete" && <MdDelete />}
       {iconName === "expand" && <FiMaximize2 />}
       {iconName === "minimize" && <FiMinimize2 />}
       {iconName === "settings" && <IoMdSettings />}
       {iconName === "list" && <FaList />}
+      {iconName === "done" && <MdDone />}
       {iconName === "grid" && <BsFillGridFill />}
+      {iconName === "send" && <IoMdSend />}
       {iconName === "newCategory" && <MdOutlineCreateNewFolder />}
     </ExpandButtonStyled>
   );

@@ -1,4 +1,5 @@
 import { IOptionColor } from "src/components/Header/Categories/CategoriesStyled";
+import { appearWithZoom } from "src/styles/animations";
 import { breakpoints, colors } from "src/styles/theme";
 import styled from "styled-components";
 
@@ -25,6 +26,20 @@ export const NewCategoryStyled = styled.article`
     align-content: flex-start;
     h2 {
       margin: 5px 0;
+    }
+    .headerNewCategory {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      .actualLenght {
+        span {
+          color: ${colors.gray.dark};
+          animation: ${appearWithZoom} 0.3s ease-in-out;
+        }
+      }
     }
     .formCreate {
       display: flex;
