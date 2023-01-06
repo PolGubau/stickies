@@ -56,9 +56,6 @@ const NewCategory = () => {
     validateName(name);
     f.updateCategory(category, "name", name);
   };
-  const zoomNumber = (number: number) => {
-    alert(number);
-  };
 
   return (
     <>
@@ -109,7 +106,7 @@ const NewCategory = () => {
                   disabled={
                     categories.length >= MAX_CATEGORIES || isNameAlreadyUsed
                   }
-                  iconName="newCategory"
+                  iconName="send"
                 />
               </div>
             </form>

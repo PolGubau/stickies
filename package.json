@@ -25,8 +25,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "vercel": "vercel"
-    
-    
   },
   "eslintConfig": {
     "extends": [
